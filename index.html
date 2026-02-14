@@ -70,8 +70,6 @@ img {
 <div id="giftSection" class="hidden">
 <h2 id="personalMessage"></h2>
 
-<div class="countdown" id="countdown"></div>
-
 <button onclick="revealPhoto()">Open Your Surprise 🎁</button>
 
 <img id="photo" 
@@ -90,17 +88,6 @@ img {
 // Auto Name from URL
 const params = new URLSearchParams(window.location.search);
 const name = params.get("name") || "My Love";
-
-// Set Valentine Date Countdown
-const valentineDate = new Date("Feb 14, 2026 00:00:00").getTime();
-const countdownElement = document.getElementById("countdown");
-
-setInterval(() => {
-    const now = new Date().getTime();
-    const distance = valentineDate - now;
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    countdownElement.innerHTML = "Countdown to Valentine's Day: " + days + " days 💖";
-}, 1000);
 
 // Password Check
 function checkPassword() {
