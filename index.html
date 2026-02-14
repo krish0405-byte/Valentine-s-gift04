@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Special Valentine Gift 💖</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg,#ff4e50,#ff6a88,#ff99ac);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+}
+
+.container {
+    background: rgba(255,255,255,0.15);
+    padding: 30px;
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 0 30px rgba(0,0,0,0.3);
+    width: 90%;
+    max-width: 400px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    background: white;
+    color: #ff4e50;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+img {
+    width: 100%;
+    border-radius: 15px;
+    margin-top: 15px;
+    display: none;
+}
+
+.hidden { display: none; }
+
+.countdown {
+    margin-top: 10px;
+    font-size: 18px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div id="passwordSection">
+<h2>Enter Secret Password 💌</h2>
+<input type="password" id="pass" placeholder="Enter password">
+<br>
+<button onclick="checkPassword()">Unlock Gift</button>
+<p id="error" style="color:yellow;"></p>
+</div>
+
+<div id="giftSection" class="hidden">
+<h2 id="personalMessage"></h2>
+
+<div class="countdown" id="countdown"></div>
+
+<button onclick="revealPhoto()">Open Your Surprise 🎁</button>
+
+<img id="photo" src="https://i.imgur.com/4M7IWwP.jpg">
+
+<audio id="music" autoplay loop>
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+</div>
+
+</div>
+
+<script>
+
+// Auto Name from URL
+const params = new URLSearchParams(window.location.search);
+const name = params.get("name") || "My Love";
+
+// Set Valentine Date Countdown
+const valentineDate = new Date("Feb 14, 2026 00:00:00").getTime();
+const countdownElement = document.getElementById("countdown");
+
+setInterval(() => {
+    const now = new Date().getTime();
+    const distance = valentineDate - now;
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    countdownElement.innerHTML = "Countdown to Valentine's Day: " + days + " days 💖";
+}, 1000);
+
+// Password Check
+function checkPassword() {
+    const password = document.getElementById("pass").value;
+    if(password === "love123") {
+        document.getElementById("passwordSection").classList.add("hidden");
+        document.getElementById("giftSection").classList.remove("hidden");
+        document.getElementById("personalMessage").innerHTML =
+        "Happy Valentine's Day, " + name + " 💖<br>You mean everything to me ❤️";
+    } else {
+        document.getElementById("error").innerText = "Wrong password 😢";
+    }
+}
+
+// Reveal Photo
+function revealPhoto() {
+    document.getElementById("photo").style.display = "block";
+}
+
+</script>
+
+</body>
+</html>
